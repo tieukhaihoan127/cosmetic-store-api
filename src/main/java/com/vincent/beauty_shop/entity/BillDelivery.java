@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderDelivery {
+public class BillDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,6 +42,6 @@ public class OrderDelivery {
 
     private String comAddress;
 
-    @OneToOne(mappedBy = "orderDelivery")
-    private Order order;
+    @OneToOne(mappedBy = "billDelivery")
+    private Bill bill;
 }

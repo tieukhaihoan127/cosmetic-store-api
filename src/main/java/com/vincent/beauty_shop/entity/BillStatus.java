@@ -6,28 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderPickup {
+public class BillStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate pickupDate;
+    private String status;
 
-    private LocalTime pickupHour;
+    private LocalDateTime timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
-
-    @OneToOne(mappedBy = "orderPickup")
-    private Order order;
+    @JoinColumn(name = "bill_id", nullable = false)
+    private Bill bill;
 }

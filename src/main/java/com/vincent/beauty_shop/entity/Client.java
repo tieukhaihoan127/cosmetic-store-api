@@ -53,7 +53,7 @@ public class Client {
     private Cart cart;
 
     @OneToMany(mappedBy = "client")
-    private Set<Order> orders = new HashSet<>();
+    private Set<Bill> bills = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
     private Set<CouponClient> couponClients = new HashSet<>();

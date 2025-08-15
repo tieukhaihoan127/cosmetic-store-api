@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -36,5 +35,5 @@ public class Payment {
     private LocalDateTime paidAt;
 
     @OneToMany(mappedBy = "payment")
-    private Set<Order> orders = new HashSet<>();
+    private Set<Bill> bills = new HashSet<>();
 }

@@ -57,5 +57,5 @@ public class Store {
     private Set<InventoryTransaction> invertories = new HashSet<>();
 
     @OneToMany(mappedBy = "store")
-    private Set<OrderPickup> orderPickups = new HashSet<>();
+    private Set<BillPickup> billPickups = new HashSet<>();
 }

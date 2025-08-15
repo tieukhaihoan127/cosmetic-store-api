@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Order {
+public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,20 +45,20 @@ public class Order {
     private Coupon coupon;
 
     @OneToOne
-    @JoinColumn(name = "order_pickup_id", unique = true)
-    private OrderPickup orderPickup;
+    @JoinColumn(name = "bill_pickup_id", unique = true)
+    private BillPickup billPickup;
 
     @OneToOne
-    @JoinColumn(name = "order_delivery_id", unique = true)
-    private OrderDelivery orderDelivery;
+    @JoinColumn(name = "bill_delivery_id", unique = true)
+    private BillDelivery billDelivery;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderItem> orderItems = new HashSet<>();
+    @OneToMany(mappedBy = "bill")
+    private Set<BillItem> billItems = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderStatus> orderStatuses = new HashSet<>();
+    @OneToMany(mappedBy = "bill")
+    private Set<BillStatus> billStatuses = new HashSet<>();
 }

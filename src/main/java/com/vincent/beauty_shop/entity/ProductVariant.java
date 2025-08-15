@@ -44,11 +44,11 @@ public class ProductVariant {
     private Set<InventoryTransaction> invertories = new HashSet<>();
 
     @OneToMany(mappedBy = "productVariant")
-    private Set<ProductImages> images = new HashSet<>();
+    private Set<ProductImage> images = new HashSet<>();
 
     @OneToMany(mappedBy = "productVariant")
     private Set<CartItem> cartItems = new HashSet<>();
 
     @OneToMany(mappedBy = "productVariant")
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private Set<BillItem> billItems = new HashSet<>();
 }

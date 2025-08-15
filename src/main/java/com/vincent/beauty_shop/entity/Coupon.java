@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +41,7 @@ public class Coupon {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "coupon")
-    private Set<Order> orders = new HashSet<>();
+    private Set<Bill> bills = new HashSet<>();
 
     @OneToMany(mappedBy = "coupon")
     private Set<CouponClient> couponClients = new HashSet<>();
