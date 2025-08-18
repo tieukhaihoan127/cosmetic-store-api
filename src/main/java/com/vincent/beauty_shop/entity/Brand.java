@@ -24,8 +24,6 @@ public class Brand {
 
     private String title;
 
-    private String imageUrl;
-
     private String bannerImage;
 
     private String description;

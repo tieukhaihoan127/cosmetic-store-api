@@ -4,14 +4,15 @@ import com.vincent.beauty_shop.entity.Category;
 import com.vincent.beauty_shop.exception.DeleteForeignKeyException;
 import com.vincent.beauty_shop.exception.ResourceNotFoundException;
 import com.vincent.beauty_shop.repository.CategoryRepository;
-import com.vincent.beauty_shop.request.CategoryCreateRequest;
-import com.vincent.beauty_shop.request.CategoryUpdateRequest;
+import com.vincent.beauty_shop.request.category.CategoryCreateRequest;
+import com.vincent.beauty_shop.request.category.CategoryUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService{
     private CategoryRepository categoryRepository;
 
@@ -20,6 +21,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
@@ -37,6 +39,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found with id " + id));
     }
@@ -64,9 +67,11 @@ public class CategoryServiceImpl implements CategoryService{
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found with id " + id));
 
-        // Nếu cần validate children/parent
         if (!category.getChildren().isEmpty()) {
             throw new DeleteForeignKeyException("Cannot delete category because it has child categories.");
+        }
+        else if(!category.getProducts().isEmpty()){
+            throw new DeleteForeignKeyException("Cannot delete category because it has products.");
         }
 
         categoryRepository.delete(category);

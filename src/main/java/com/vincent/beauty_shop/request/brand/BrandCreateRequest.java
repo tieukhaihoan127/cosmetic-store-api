@@ -1,4 +1,4 @@
-package com.vincent.beauty_shop.request;
+package com.vincent.beauty_shop.request.brand;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryCreateRequest {
+public class BrandCreateRequest {
     @NotBlank
     private String title;
 
-    private Long parentId;
+    @NotBlank
+    private String logo;
+
+    private String bannerImage;
+
+    private String description;
+
 }
