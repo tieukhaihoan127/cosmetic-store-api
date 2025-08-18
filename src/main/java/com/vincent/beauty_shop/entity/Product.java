@@ -67,4 +67,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Rating> ratings = new HashSet<>();
 
+    @ManyToMany(mappedBy = "products")
+    private Set<Category> categories = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "product_attribute_value", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "attribute_value_id"))
+    private Set<AttributeValue> attributeValues = new HashSet<>();
 }
