@@ -39,7 +39,7 @@ public class Category {
     @JsonManagedReference
     private Set<Category> children = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "category_product", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @ManyToMany(mappedBy = "categories")
+    @JsonManagedReference
     private Set<Product> products = new HashSet<>();
 }

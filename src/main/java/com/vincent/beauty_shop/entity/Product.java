@@ -1,10 +1,9 @@
 package com.vincent.beauty_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -32,7 +32,9 @@ public class Product {
 
     private boolean isFreeship;
 
-    private boolean thumbnail;
+    private String thumbnail;
+
+    private int sellingQuantity;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -42,35 +44,34 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
+    @JsonBackReference
     private Brand brand;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private  Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)
-    private  Store store;
-
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProductStore> productStores = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductStore> productVariants = new HashSet<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    @JsonManagedReference
+    private Set<ProductVariant> productVariants = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Question> questions = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Wishlist> wishlists = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Rating> ratings = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
+    @JoinTable(
+            name = "category_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    @Builder.Default
+    @JsonBackReference
     private Set<Category> categories = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "product_attribute_value", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "attribute_value_id"))
-    private Set<AttributeValue> attributeValues = new HashSet<>();
 }
