@@ -32,6 +32,8 @@ public class Client {
 
     private String status;
 
+    private boolean deleted;
+
     private double loyaltyPoint;
 
     @CreationTimestamp

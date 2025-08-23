@@ -25,17 +25,13 @@ public class ProductServiceImpl implements ProductService{
     private ProductRepository productRepository;
     private BrandRepository brandRepository;
     private CategoryRepository categoryRepository;
-    private ProductVariantRepository productVariantRepository;
-    private ProductImageRepository productImageRepository;
     private ProductMapper productMapper;
 
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, BrandRepository brandRepository, CategoryRepository categoryRepository, ProductVariantRepository productVariantRepository, ProductImageRepository productImageRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, BrandRepository brandRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.brandRepository = brandRepository;
         this.categoryRepository = categoryRepository;
-        this.productVariantRepository = productVariantRepository;
-        this.productImageRepository = productImageRepository;
     }
 
     @Override
