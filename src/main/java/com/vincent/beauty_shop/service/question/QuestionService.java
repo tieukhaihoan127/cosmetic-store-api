@@ -1,17 +1,17 @@
 package com.vincent.beauty_shop.service.question;
 
 import com.vincent.beauty_shop.entity.Question;
+import com.vincent.beauty_shop.request.question.QuestionCreateRequest;
+import com.vincent.beauty_shop.response.question.QuestionDTO;
 
 import java.util.List;
 
 public interface QuestionService {
-    public List<Question> getAllQuestions();
+    public List<QuestionDTO> getAllQuestions();
 
-    Question createQuestion();
+    QuestionDTO createQuestion(QuestionCreateRequest request);
 
-    Question getQuestionById(Long id);
-
-    Question updateQuestion(Long id);
+    QuestionDTO getQuestionById(Long id);
 
     void deleteQuestion(Long id);
 }

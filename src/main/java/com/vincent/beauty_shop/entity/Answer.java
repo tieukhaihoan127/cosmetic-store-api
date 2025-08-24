@@ -1,5 +1,6 @@
 package com.vincent.beauty_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,5 +25,6 @@ public class Answer {
 
     @OneToOne
     @JoinColumn(name = "question_id", nullable = false, unique = true)
+    @JsonBackReference
     private Question question;
 }

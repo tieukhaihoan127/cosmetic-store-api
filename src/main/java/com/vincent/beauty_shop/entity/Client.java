@@ -1,5 +1,6 @@
 package com.vincent.beauty_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,7 @@ public class Client {
     private Set<ClientAddress> addresses = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
+    @JsonBackReference
     private Set<Question> questions = new HashSet<>();
 
     @OneToMany(mappedBy = "client")

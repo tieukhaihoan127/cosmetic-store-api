@@ -1,5 +1,6 @@
 package com.vincent.beauty_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,12 +31,15 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonManagedReference
     private Client client;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "question")
+    @JsonManagedReference
     private Answer answer;
+
 
 }
