@@ -1,6 +1,8 @@
 package com.vincent.beauty_shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,21 +46,26 @@ public class Client {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private Set<ClientAddress> addresses = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
-    @JsonBackReference
+    @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private Set<Wishlist> wishlists = new HashSet<>();
 
     @OneToOne(mappedBy = "client")
+    @JsonIgnore
     private Cart cart;
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private Set<Bill> bills = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private Set<CouponClient> couponClients = new HashSet<>();
 }

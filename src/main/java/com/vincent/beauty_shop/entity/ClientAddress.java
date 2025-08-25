@@ -1,5 +1,6 @@
 package com.vincent.beauty_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,8 @@ public class ClientAddress {
 
     private String address;
 
+    private boolean defaultAddress;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -44,5 +47,6 @@ public class ClientAddress {
 
     @ManyToOne()
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonBackReference
     private Client client;
 }
