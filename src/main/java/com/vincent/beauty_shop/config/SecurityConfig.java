@@ -25,6 +25,20 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/categories/**").permitAll()
                 .requestMatchers("/api/v1/admin/categories/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/brands/**").permitAll()
+                .requestMatchers("/api/v1/admin/brands/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/answers/**").permitAll()
+                .requestMatchers("/api/v1/admin/answers/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/clients/**").permitAll()
+                .requestMatchers("/api/v1/admin/clients/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/products/**").permitAll()
+                .requestMatchers("/api/v1/admin/products/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/questions/**").permitAll()
+                .requestMatchers("/api/v1/admin/questions/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/ratings/**").permitAll()
+                .requestMatchers("/api/v1/admin/ratings/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/stores/**").permitAll()
+                .requestMatchers("/api/v1/admin/stores/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ).httpBasic(Customizer.withDefaults());
 
