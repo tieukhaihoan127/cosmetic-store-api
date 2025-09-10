@@ -10,19 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/answers")
-public class AnswerController {
+@RequestMapping("${api.version}/admin/answers")
+public class AnswerAdminController {
 
     private final AnswerService answerService;
 
-    public AnswerController(AnswerService answerService) {
+    public AnswerAdminController(AnswerService answerService) {
         this.answerService = answerService;
-    }
-
-    @PostMapping
-    public ResponseEntity<Answer> addAnswer(@Valid @RequestBody AnswerCreateRequest request) {
-        Answer answer = answerService.createAnswer(request);
-        return new ResponseEntity<>(answer, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

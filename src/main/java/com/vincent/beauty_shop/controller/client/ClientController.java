@@ -1,4 +1,4 @@
-package com.vincent.beauty_shop.controller.admin;
+package com.vincent.beauty_shop.controller.client;
 
 import com.vincent.beauty_shop.entity.Client;
 import com.vincent.beauty_shop.entity.ClientAddress;
@@ -17,17 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("${api.version}/clients")
 public class ClientController {
-    private ClientService clientService;
+    private final ClientService clientService;
 
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Client>> getAllClients() {
-        return new ResponseEntity<>(clientService.getAllClients(), HttpStatus.OK);
     }
 
     @GetMapping("/address/{id}")
@@ -80,12 +75,6 @@ public class ClientController {
     public ResponseEntity<String> deleteClientAddress(@PathVariable Long id) {
         clientService.deleteClientAddress(id);
         return ResponseEntity.ok("Address successfully deleted");
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteClient(@PathVariable Long id) {
-        clientService.deleteClient(id);
-        return ResponseEntity.ok("Client successfully deleted");
     }
 
     @DeleteMapping("/wishlist")

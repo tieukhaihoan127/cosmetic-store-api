@@ -7,18 +7,17 @@ import com.vincent.beauty_shop.service.rating.RatingService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/ratings")
-public class RatingController {
+@RequestMapping("${api.version}/admin/ratings")
+public class RatingAdminController {
 
     public RatingService ratingService;
 
-    public RatingController(RatingService ratingService) {
+    public RatingAdminController(RatingService ratingService) {
         this.ratingService = ratingService;
     }
 

@@ -23,10 +23,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/categories/**").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/categories/**").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/categories/**").permitAll()
+                .requestMatchers("/api/v1/categories/**").permitAll()
+                .requestMatchers("/api/v1/admin/categories/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ).httpBasic(Customizer.withDefaults());
 

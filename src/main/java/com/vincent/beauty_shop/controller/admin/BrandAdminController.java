@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/brands")
-public class BrandController {
+@RequestMapping("${api.version}/admin/brands")
+public class BrandAdminController {
     private BrandService brandService;
 
-    public BrandController(BrandService brandService){
+    public BrandAdminController(BrandService brandService){
         this.brandService = brandService;
     }
 

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stores")
-public class StoreController {
+@RequestMapping("${api.version}/admin/stores")
+public class StoreAdminController {
     private StoreService storeService;
 
-    public StoreController(StoreService storeService) {
+    public StoreAdminController(StoreService storeService) {
         this.storeService = storeService;
     }
 

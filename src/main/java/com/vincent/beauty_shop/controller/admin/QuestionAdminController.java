@@ -1,6 +1,5 @@
 package com.vincent.beauty_shop.controller.admin;
 
-import com.vincent.beauty_shop.entity.Question;
 import com.vincent.beauty_shop.request.question.QuestionCreateRequest;
 import com.vincent.beauty_shop.response.question.QuestionDTO;
 import com.vincent.beauty_shop.service.question.QuestionService;
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/questions")
-public class QuestionController {
+@RequestMapping("${api.version}/admin/questions")
+public class QuestionAdminController {
 
     private final QuestionService questionService;
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionAdminController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
