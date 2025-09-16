@@ -26,6 +26,8 @@ public class PurchaseOrder {
 
     private String createdBy;
 
+    private String status;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
