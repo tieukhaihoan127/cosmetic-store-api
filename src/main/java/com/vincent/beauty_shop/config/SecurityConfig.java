@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/stores/**").permitAll()
                 .requestMatchers("/api/v1/admin/stores/**").hasRole("ADMIN")
                 .requestMatchers("/api/v1/admin/permissions/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/admin/roles/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ).httpBasic(Customizer.withDefaults());
 
