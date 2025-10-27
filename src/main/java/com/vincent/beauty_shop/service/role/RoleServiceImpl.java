@@ -81,10 +81,10 @@ public class RoleServiceImpl implements RoleService {
         Set<Permission> permissions = new HashSet<>();
         roleMapper.updateRoleFromDto(roleUpdateRequest, role);
 
-        if(!roleUpdateRequest.getPermissionIds().isEmpty()) {
+        if(roleUpdateRequest.getPermissionIds() != null && !roleUpdateRequest.getPermissionIds().isEmpty()) {
             permissions.addAll(permissionRepository.findAllById(roleUpdateRequest.getPermissionIds()));
+            role.setPermissions(permissions);
         }
-        role.setPermissions(permissions);
 
         return roleRepository.save(role);
     }
